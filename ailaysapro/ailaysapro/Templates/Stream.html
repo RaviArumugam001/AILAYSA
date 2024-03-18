@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Stream</title>
+</head>
+<body>
+    <h1>Real-Time Stream of Sentences</h1>
+    <pre id="stream-container"></pre>
+
+    <script>
+        const streamContainer = document.getElementById('stream-container');
+        const stream = new EventSource('/stream-sentence/');
+
+        stream.onmessage = function(event) {
+            streamContainer.innerText += event.data + '\n';
+            streamContainer.scrollTop = streamContainer.scrollHeight;  // Scroll to bottom
+        };
+    </script>
+</body>
+</html>
